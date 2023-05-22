@@ -44,7 +44,7 @@ public class Main {
         //该方法返回一个布尔值，返回值为true则是客户端触发该事件，为false则为服务端触发事件
         //并使用三目运算符变为字符串
         eventPlayer.sendMessage(
-                new TextComponent("Hello," + eventPlayer.getDisplayName().getString() + ".From " + (level.isClientSide()?"CLIENT":"SERVER") + "."),
+                new TextComponent("Hi," + eventPlayer.getDisplayName().getString() + ".From " + (level.isClientSide()?"CLIENT":"SERVER") + "."),
                 Util.NIL_UUID);
     }
 }
