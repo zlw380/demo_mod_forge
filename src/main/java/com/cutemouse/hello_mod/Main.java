@@ -5,6 +5,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -46,5 +47,26 @@ public class Main {
         eventPlayer.sendMessage(
                 new TextComponent("Hello," + eventPlayer.getDisplayName().getString() + ".From " + (level.isClientSide()?"CLIENT":"SERVER") + "."),
                 Util.NIL_UUID);
+    }
+
+    //事件处理方法，左键点击方块
+    @SubscribeEvent
+    public static void leftClickBlock(PlayerInteractEvent.LeftClickBlock event){
+
+        Player player = event.getPlayer();
+
+        player.sendMessage(new TextComponent("LeftClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.")),
+                Util.NIL_UUID);
+
+    }
+
+    @SubscribeEvent
+    public static void rightClickBlock(PlayerInteractEvent.RightClickBlock event){
+
+        Player player = event.getPlayer();
+
+        player.sendMessage(new TextComponent("RightClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.")),
+                Util.NIL_UUID);
+
     }
 }
