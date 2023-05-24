@@ -55,9 +55,10 @@ public class Main {
 
         Player player = event.getPlayer();
 
-        player.sendMessage(new TextComponent("LeftClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.")),
+        player.sendMessage(new TextComponent("LeftClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.") +
+                "hand = " + event.getHand()),
                 Util.NIL_UUID);
-
+        //PlayerInteractEvent下的hand属性带有private关键字，其内部类LeftClickBlock的对象无法直接调用。
     }
 
     @SubscribeEvent
@@ -65,8 +66,18 @@ public class Main {
 
         Player player = event.getPlayer();
 
-        player.sendMessage(new TextComponent("RightClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.")),
+        player.sendMessage(new TextComponent("RightClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.") +
+                "hand = " + event.getHand()),
                 Util.NIL_UUID);
 
     }
+    //此处可加断点进行调试，根据player对象中的level属性得知事件是在哪一端触发
+    //return false; 使程序不在断点处暂停
+    //断点处出现问号说明该断点是一个条件断点
+    //条件断点是一种拥有可设置条件属性，满足一定条件才触发的断点。
+
+    /*
+    * 右键放置方块时，触发两次事件处理方法。两次event对象的hand属性均为"MAIN_HAND"，即主手触发。但服务端与客户端各触发一次。
+    * 右键空手点击方块时，触发四次事件处理方法。主手与副手各触发两次，同样分别由服务端与客户端触发。
+    * */
 }
