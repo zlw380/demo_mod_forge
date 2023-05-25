@@ -3,7 +3,12 @@ package com.cutemouse.hello_mod;
 import net.minecraft.Util;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -66,10 +71,12 @@ public class Main {
 
         Player player = event.getPlayer();
 
-        player.sendMessage(new TextComponent("RightClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.") +
+        /*player.sendMessage(new TextComponent("RightClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.") +
                 "hand = " + event.getHand()),
-                Util.NIL_UUID);
+                Util.NIL_UUID);*/
 
+        /*player.sendMessage(new TextComponent(player.level.isClientSide()?"CLIENT":"SERVER"),Util.NIL_UUID);
+        return false;*/
     }
     //此处可加断点进行调试，根据player对象中的level属性得知事件是在哪一端触发
     //return false; 使程序不在断点处暂停
@@ -80,4 +87,37 @@ public class Main {
     * 右键放置方块时，触发两次事件处理方法。两次event对象的hand属性均为"MAIN_HAND"，即主手触发。但服务端与客户端各触发一次。
     * 右键空手点击方块时，触发四次事件处理方法。主手与副手各触发两次，同样分别由服务端与客户端触发。
     * */
+
+    //当手中持有物品时才会触发该方法
+    //当玩家手中物品为钻石剑时，右键传送到准星对准的位置
+    @SubscribeEvent
+    public static void rightClickItem(PlayerInteractEvent.RightClickItem event){
+        System.out.println("触发了手中物品右键点击的事件处理函数");
+        //获取触发事件的玩家
+        Player player = event.getPlayer();
+        //游戏数据由服务端处理，但该事件客户端与服务端都会触发，因此需判断事件是否为服务端触发
+        boolean clientSide = player.level.isClientSide();
+        //如果是由服务端触发，进入分支
+        if(!clientSide){
+            //获取玩家右键时手中的物品格，一格物品就是一个ItemStack，包含物品名，物品数据，物品数量等属性
+            ItemStack itemStack = event.getItemStack();
+            System.out.println("手中物品格信息：" + itemStack);
+            //返回物品格对应的物品
+            Item item = itemStack.getItem();
+            //如果该物品为钻石剑
+            if (item == Items.DIAMOND_SWORD){
+                //获取玩家准星对准的信息
+                //public HitResult pick(double p_19908_, float p_19909_, boolean p_19910_){}
+                //准星最大捕获范围为20，不包含流体。
+                HitResult hitResult = player.pick(20, 0, false);
+                //System.out.println("准星对准信息" + hitResult); //这里只会打印出对应的类以及对象在堆区的地址单元
+                //获得准星对准的坐标。Vec3即为三维向量，该类的实例可用于存储一个三维坐标
+                Vec3 hitResultLocation = hitResult.getLocation();
+                //将玩家传送到对准坐标
+                player.teleportTo(hitResultLocation.x,hitResultLocation.y,hitResultLocation.z);
+            }
+        }
+        //当手中物品在副手时，也会执行同样的操作。
+        //主副手上任意一只手有物品时，都会执行两次该事件处理方法。扫描一次主手，扫描一次副手。
+    }
 }
