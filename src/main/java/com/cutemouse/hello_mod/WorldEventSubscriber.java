@@ -8,7 +8,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-//世界事件
+//世界事件处理类
 @Mod.EventBusSubscriber
 public class WorldEventSubscriber {
 
@@ -51,7 +51,7 @@ public class WorldEventSubscriber {
 
             Player player = (Player) event.getEntity();
             player.sendMessage(new TextComponent("玩家" + player.getDisplayName().getString() +
-                    "放置了方块。方块快照信息：" + event.getBlockSnapshot() +
+                    "放置了方块。放置快照信息：" + event.getBlockSnapshot() +
                     "。放置的方块状态：" + event.getPlacedBlock() +
                     "。是对着" + event.getPlacedAgainst() + "方块放置的。"
             ),Util.NIL_UUID);
