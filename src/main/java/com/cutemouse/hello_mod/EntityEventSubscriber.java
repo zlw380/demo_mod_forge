@@ -12,7 +12,7 @@ public class EntityEventSubscriber {
     protected static boolean playerEnterWorld = false;
 
     //实体被创建事件
-    //玩家进入世界、丢弃物品、使用刷怪蛋、加载生物均为实体生成事件
+    //玩家进入世界、丢弃物品、使用刷怪蛋、加载生物等均为实体生成事件
     @SubscribeEvent
     public static void entityConstructingSub(EntityEvent.EntityConstructing event){
 
@@ -44,10 +44,11 @@ public class EntityEventSubscriber {
             }
         }
     }
+    //丢弃手中物品时捕获的实体信息：
+    //ItemEntity['空气'/17, l='ServerLevel[新的世界]', x=0.00, y=0.00, z=0.00]
+    //不管丢弃什么物品，物品实体名都是空气，坐标均为0。说明该实体还没有创建完成。
+    //因此可知EntityConstructing实体生成事件发生在实体开始创建的时候。
+    //当物品被吸回来时，客户端会再创建一个实体。
 }
 
-//丢弃手中物品时捕获的实体信息：
-//ItemEntity['空气'/17, l='ServerLevel[新的世界]', x=0.00, y=0.00, z=0.00]
-//不管丢弃什么物品，物品实体名都是空气，坐标均为0。说明该实体还没有创建完成。
-//因此可知EntityConstructing实体生成事件发生在实体开始创建的时候。
-//当物品被吸回来时，客户端会再创建一个实体。
+
