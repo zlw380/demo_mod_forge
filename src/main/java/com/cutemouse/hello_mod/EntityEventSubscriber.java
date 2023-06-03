@@ -113,6 +113,7 @@ public class EntityEventSubscriber {
                 "该实体所处的世界是" + event.getWorld() + "。" +
                 loadedFromDisk);
     }
+    //服务端渲染距离一般要比客户端渲染距离长，所以有时候实体加入世界事件只会在服务端触发，而等到该实体进入客户端渲染范围时才会在客户端触发。
 }
 
 
