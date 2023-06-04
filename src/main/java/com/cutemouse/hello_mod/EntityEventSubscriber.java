@@ -135,7 +135,21 @@ public class EntityEventSubscriber {
     @SubscribeEvent
     public static void entityMountSub(EntityMountEvent event){
 
-        System.out.println("触发了骑乘事件：" + event.getEntity());
+        String isMounting;
+
+        if (event.isMounting()){
+            isMounting = "骑了上去。";
+        }else {
+            isMounting = "跳了下来。";
+        }
+
+        //System.out.println("触发了骑乘事件：" + event.getEntity());
+        if (event.getEntity() instanceof Player && event.getWorldObj().isClientSide()){
+
+            event.getEntity().sendMessage(new TextComponent("玩家" + event.getEntity().getDisplayName().getString() +
+                    "进行了骑乘操作。他骑的是" + event.getEntityBeingMounted().getDisplayName().getString() +
+                    "。他" + isMounting),Util.NIL_UUID);
+        }
     }
 }
 
