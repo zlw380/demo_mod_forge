@@ -6,6 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityMobGriefingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -103,17 +104,26 @@ public class EntityEventSubscriber {
 
         if (event.getEntity() instanceof Player){
 
-            event.getEntity().sendMessage(new TextComponent("一个名为" +
+            /*event.getEntity().sendMessage(new TextComponent("一个名为" +
                     event.getEntity().getDisplayName().getString() + "的玩家实体加入了世界！" +
                     "该实体所处的世界是" + event.getWorld() + "。" +
-                    loadedFromDisk),Util.NIL_UUID);
+                    loadedFromDisk),Util.NIL_UUID);*/
         }
 
-        System.out.println("一个名为" + event.getEntity().getDisplayName().getString() + "的实体加入了世界！" +
+        /*System.out.println("一个名为" + event.getEntity().getDisplayName().getString() + "的实体加入了世界！" +
                 "该实体所处的世界是" + event.getWorld() + "。" +
-                loadedFromDisk);
+                loadedFromDisk);*/
     }
     //服务端渲染距离一般要比客户端渲染距离长，所以有时候实体加入世界事件只会在服务端触发，而等到该实体进入客户端渲染范围时才会在客户端触发。
+
+    //Mob是LivingEntity的一个子类，因此Mob是一类生物实体。
+    //EntityMobGriefingEvent是当Mob类实体进行搞破坏一类的行为时触发的事件
+    @SubscribeEvent
+    public static void entityMobGriefingSub(EntityMobGriefingEvent event){
+
+        //System.out.println("触发了MobGriefing事件，" + event.getEntity());
+
+    }
 }
 
 
