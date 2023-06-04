@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
+import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -121,8 +122,20 @@ public class EntityEventSubscriber {
     @SubscribeEvent
     public static void entityMobGriefingSub(EntityMobGriefingEvent event){
 
+        //非玩家生物踩平耕地、村民种植和收割作物、羊吃草、狐狸吃浆果、兔子偷袭胡萝卜作物
+        //雪傀儡生成雪片、凋零破坏方块、苦力怕爆炸、末影人放置或搬走方块
+        //唤魔者发出呜噜噜声音并将蓝色绵羊变成红色、劫掠兽破坏方块
+        //蠹虫钻进石头、蠹虫召唤同伴、猪灵捡起物品、任何弹射物如火球
+        //烈焰弹破坏或产生方块、非玩家生物践踏海龟蛋
         //System.out.println("触发了MobGriefing事件，" + event.getEntity());
 
+    }
+
+    //实体骑乘事件
+    @SubscribeEvent
+    public static void entityMountSub(EntityMountEvent event){
+
+        System.out.println("触发了骑乘事件：" + event.getEntity());
     }
 }
 
