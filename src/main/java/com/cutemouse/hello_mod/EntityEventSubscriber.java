@@ -4,10 +4,7 @@ import net.minecraft.Util;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.EntityMobGriefingEvent;
-import net.minecraftforge.event.entity.EntityMountEvent;
+import net.minecraftforge.event.entity.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -150,6 +147,36 @@ public class EntityEventSubscriber {
                     "进行了骑乘操作。他骑的是" + event.getEntityBeingMounted().getDisplayName().getString() +
                     "。他" + isMounting),Util.NIL_UUID);
         }
+    }
+
+    //实体传送事件
+    //写在事件处理方法中的传送行为不会触发传送事件
+    //不同的传送方式（末影珍珠、指令）对应的内部类也不同
+    @SubscribeEvent
+    public static void entityTeleportSub(EntityTeleportEvent event){
+
+        //System.out.println("传送事件对象对应的类是：" + event.getClass().getName() + EntityTeleportEvent.EnderPearl.class.getName());
+
+        String teleportClass;
+
+        if (event.getClass().equals(EntityTeleportEvent.EnderPearl.class)){
+            teleportClass = "末影珍珠";
+        }else if (event.getClass().equals(EntityTeleportEvent.TeleportCommand.class)){
+            teleportClass = "传送指令";
+        }else {
+            teleportClass = "其他";
+        }
+
+        if (event.getEntity() instanceof Player){
+
+            event.getEntity().sendMessage(new TextComponent(
+                    "玩家" + event.getEntity().getDisplayName().getString() +
+                            "通过" + teleportClass + "的方式" +
+                            "从" + event.getPrev() + "传送到了" + event.getTarget()
+            ),Util.NIL_UUID);
+        }
+        //玩家Dev通过末影珍珠的方式从(8.930171646179426, -60.0, -2.2741389591475047)传送到了(6.414525276261045, -59.506929962978646, -1.0172242406623313)
+        //玩家Dev通过传送指令的方式从(6.414525276261045, -60.0, -1.0172242406623313)传送到了(2.45, -59.99, 1.0)
     }
 }
 
