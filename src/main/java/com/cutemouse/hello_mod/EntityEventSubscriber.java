@@ -2,8 +2,10 @@ package com.cutemouse.hello_mod;
 
 import net.minecraft.Util;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -177,6 +179,34 @@ public class EntityEventSubscriber {
         }
         //玩家Dev通过末影珍珠的方式从(8.930171646179426, -60.0, -2.2741389591475047)传送到了(6.414525276261045, -59.506929962978646, -1.0172242406623313)
         //玩家Dev通过传送指令的方式从(6.414525276261045, -60.0, -1.0172242406623313)传送到了(2.45, -59.99, 1.0)
+    }
+
+    //进入维度事件
+    @SubscribeEvent
+    public static void entityTravelToDimensionSub(EntityTravelToDimensionEvent event){
+
+        String world;
+
+        ResourceKey<Level> dimension = event.getDimension();
+        //System.out.println("进入的维度为：" + dimension);
+
+        if (dimension == Level.OVERWORLD){
+            world = "主世界";
+        }else if (dimension == Level.NETHER){
+            world = "下界";
+        }else if (dimension == Level.END){
+            world = "末地";
+        }else {
+            world = "其他维度";
+        }
+
+        if (event.getEntity() instanceof Player){
+
+            event.getEntity().sendMessage(new TextComponent(
+                    "玩家" + event.getEntity().getDisplayName().getString() +
+                            "进入了另一维度。进入的是" + world + "。"
+            ),Util.NIL_UUID);
+        }
     }
 }
 
