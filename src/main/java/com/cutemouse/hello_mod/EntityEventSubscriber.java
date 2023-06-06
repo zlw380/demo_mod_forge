@@ -208,6 +208,13 @@ public class EntityEventSubscriber {
             ),Util.NIL_UUID);
         }
     }
+
+    //实体发出声音事件
+    @SubscribeEvent
+    public static void entitySoundSub(PlaySoundAtEntityEvent event){
+
+        //System.out.println("实体发出声音信息：" + event.getSound().getLocation() + "|" + event.getCategory());
+    }
 }
 
 
