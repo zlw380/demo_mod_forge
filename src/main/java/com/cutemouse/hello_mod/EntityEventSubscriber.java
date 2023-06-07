@@ -3,12 +3,16 @@ package com.cutemouse.hello_mod;
 import net.minecraft.Util;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.entity.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.Objects;
 
 //实体事件处理类
 @Mod.EventBusSubscriber
@@ -214,6 +218,43 @@ public class EntityEventSubscriber {
     public static void entitySoundSub(PlaySoundAtEntityEvent event){
 
         //System.out.println("实体发出声音信息：" + event.getSound().getLocation() + "|" + event.getCategory());
+        //变更实体发出的所有声音特效为玩家获取经验升级
+        //event.setSound(SoundEvents.PLAYER_LEVELUP);
+    }
+
+    //弹射物击中目标事件
+    @SubscribeEvent
+    public static void projectileImpactSub(ProjectileImpactEvent event){
+
+        if (!event.getEntity().level.isClientSide()){
+            System.out.println("获取事件对象" + event.getEntity() +
+                    "。命中点坐标：" + event.getRayTraceResult().getLocation() +
+                    "。命中的目标：" + event.getRayTraceResult().getType() +
+                    "。飞行距离：" + event.getRayTraceResult().distanceTo(Objects.requireNonNull(event.getProjectile().getOwner())) +
+                    "。发射物信息：" + event.getProjectile() +
+                    "。发射者信息：" + event.getProjectile().getOwner());
+
+            String target;
+
+            if (event.getRayTraceResult().getType() == HitResult.Type.BLOCK){
+                target = "发射物击中了方块。";
+            }else if (event.getRayTraceResult().getType() == HitResult.Type.ENTITY){
+                target = "发射物击中了实体";
+            }else {
+                target = "发射物失的。";
+            }
+
+            if (event.getProjectile().getOwner() instanceof Player){
+
+                event.getProjectile().getOwner().sendMessage(new TextComponent(
+                        "玩家" + event.getProjectile().getOwner().getDisplayName().getString() +
+                                "射出了一发" + event.getProjectile().getDisplayName().getString() +
+                                "。它的飞行距离是" + event.getRayTraceResult().distanceTo(Objects.requireNonNull(event.getProjectile().getOwner())) +
+                                "。命中的坐标为" + event.getRayTraceResult().getLocation() +
+                                "。" + target
+                ),Util.NIL_UUID);
+            }
+        }
     }
 }
 
