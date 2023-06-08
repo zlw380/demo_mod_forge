@@ -256,6 +256,26 @@ public class EntityEventSubscriber {
             }
         }
     }
+
+    //实体尺寸变化事件
+    @SubscribeEvent
+    public static void entitySizeSub(EntityEvent.Size event){
+
+        if (!event.getEntity().level.isClientSide()){
+
+            if (event.getEntity() instanceof Player){
+
+                System.out.println("实体尺寸变化信息：变化后的姿势为" + event.getPose() +
+                        "。之前的尺寸为" + event.getOldSize() +
+                        "。目前的尺寸为" + event.getNewSize() +
+                        "。之前的眼高为" + event.getOldEyeHeight() +
+                        "。目前的眼高为" + event.getNewEyeHeight() +
+                        "。触发端为" + (event.getEntity().level.isClientSide()?"客户端":"服务端"));
+                //眼高决定了实体视线的中心
+                //实体每发生一次尺寸变化，都会在服务端触发一次，在客户端触发两次。其中客户端触发第二次时实体的尺寸与眼高不发生变化。
+            }
+        }
+    }
 }
 
 
