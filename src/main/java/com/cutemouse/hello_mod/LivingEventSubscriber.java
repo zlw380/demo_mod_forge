@@ -2,12 +2,19 @@ package com.cutemouse.hello_mod;
 
 import net.minecraft.Util;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.AnimalTameEvent;
+import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.Objects;
 
 //生物事件
 @Mod.EventBusSubscriber
@@ -43,6 +50,30 @@ public class LivingEventSubscriber {
                     "玩家" + event.getTamer().getDisplayName().getString() +
                             "驯服了" + event.getAnimal().getDisplayName().getString()
             ), Util.NIL_UUID);
+        }
+    }
+
+    //子实体产生事件
+    @SubscribeEvent
+    public static void BabyEntitySpawnSub(BabyEntitySpawnEvent event){
+
+        if (event.getCausedByPlayer() != null){
+
+            if (event.getParentA() instanceof Sheep){
+                event.setChild(new Wolf(EntityType.WOLF,Objects.requireNonNull(event.getChild()).level));
+                //event.setChild(EntityType.WOLF.create(event.getChild().level));
+            }else if (event.getParentA() instanceof Wolf){
+                event.setChild(EntityType.SHEEP.create(Objects.requireNonNull(event.getChild()).level));
+            }else if (event.getParentA() instanceof Pig){
+                event.setChild(EntityType.CHICKEN.create(Objects.requireNonNull(event.getChild()).level));
+            }
+            //让狼生小羊，羊生小狼，猪生小鸡
+
+            event.getCausedByPlayer().sendMessage(new TextComponent(
+                    "玩家" + event.getCausedByPlayer().getDisplayName().getString() +
+                            "让" + event.getParentA() + "和" + event.getParentB() +
+                            "进行了繁殖。生育了" + event.getChild()
+            ),Util.NIL_UUID);
         }
     }
 }
