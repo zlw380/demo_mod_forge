@@ -10,6 +10,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.AnimalTameEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -76,4 +77,57 @@ public class LivingEventSubscriber {
             ),Util.NIL_UUID);
         }
     }
+
+    //实体受到伤害事件
+    @SubscribeEvent
+    public static void LivingAttackSub(LivingAttackEvent event){
+
+        System.out.println("受到伤害的实体：" + event.getEntityLiving() +
+                "。伤害源：" + event.getSource() +
+                "。伤害数值：" + event.getAmount());
+        //public DamageSource getSource(){} 获取伤害源，返回的是一个DamageSource类型的对象。
+        /*
+        * 当玩家攻击其它生物实体时，会调用玩家对象中的LivingEntity.hurt(DamageSource, float)方法，
+        * 同时经由ForgeHooks.onLivingAttack(LivingEntity, DamageSource, float)方法触发实体受到伤害事件，
+        * 创建对应的LivingAttackEvent对象并给属性赋值。
+        * */
+    }
+    /*
+    Player.java
+    livingentity.hurt(DamageSource.playerAttack(this), f3);
+    玩家攻击其它生物实体，调用hurt方法，将当前的玩家对象作为参数传入hurt方法，作为伤害源
+
+    LivingEntity.java
+    public boolean hurt(DamageSource p_21016_, float p_21017_) {
+      if (!net.minecraftforge.common.ForgeHooks.onLivingAttack(this, p_21016_, p_21017_)) return false;
+      ...
+    }
+    hurt方法调用onLivingAttack方法，第一个参数为被攻击的生物实体，第二个参数为伤害源，即玩家本身，第三个参数为伤害值。
+
+    DamageSource.java
+    public static DamageSource playerAttack(Player p_19345_) {
+      return new EntityDamageSource("player", p_19345_);
+    }
+    playerAttack方法中创建EntityDamageSource即伤害源对象并返回作为hurt方法的参数，Player类参数p_19345_即为当前玩家对象。
+
+    ForgeHooks.java
+    public static boolean onLivingAttack(LivingEntity entity, DamageSource src, float amount)
+    {
+        return entity instanceof Player || !MinecraftForge.EVENT_BUS.post(new LivingAttackEvent(entity, src, amount));
+    }
+    onLivingAttack方法中创建LivingAttackEvent即生物实体被攻击事件对象，并传入被攻击实体，伤害源，伤害值。
+    */
+
+    /*
+    * public static final DamageSource IN_FIRE = (new DamageSource("inFire")).bypassArmor().setIsFire();
+    * DamageSource类中有很多这种DamageSource类型的静态常量属性，这些属性都是DamageSource类的对象。
+    * 它们会在项目启动时就作为DamageSource类的成员被实例化并放入方法区。
+    * 它们均被final关键字修饰，
+    * 因此这些属性的引用（如IN_FIRE）只能指向最初在方法区中被实例化的DamageSource类对象（如(new DamageSource("inFire")).bypassArmor().setIsFire()）。
+    * 这样一来，其他任何一个类的任何一个方法中都可以随时访问获取这些DamageSource类型的常量作为伤害源的参数。
+    *
+    * 如CampfireBlock类中的entityInside(BlockState p_51269_, Level p_51270_, BlockPos p_51271_, Entity p_51272_)方法中的
+    * p_51272_.hurt(DamageSource.IN_FIRE, (float)this.fireDamage);
+    * 就表示有生物踏入营火中的时候，会受到来自伤害源DamageSource.IN_FIRE的伤害
+    * */
 }
