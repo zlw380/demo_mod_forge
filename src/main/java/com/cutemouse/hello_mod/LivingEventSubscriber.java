@@ -8,10 +8,7 @@ import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.living.AnimalTameEvent;
-import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -78,7 +75,7 @@ public class LivingEventSubscriber {
         }
     }
 
-    //实体受到伤害事件
+    //实体受到伤害事件，当实体被攻击的时候触发，被雪球砸这种不造成真正伤害的行为也会触发。
     @SubscribeEvent
     public static void LivingAttackSub(LivingAttackEvent event){
 
@@ -137,5 +134,13 @@ public class LivingEventSubscriber {
     * 就表示有实体踏入营火中的时候，会受到来自伤害源DamageSource.IN_FIRE的伤害。
     * */
 
+    //实体受到真实伤害事件
+    //当实体受到真实伤害时触发，因此不包括被雪球砸等不会造成真正伤害的事件。
+    @SubscribeEvent
+    public static void livingDamageSub(LivingDamageEvent event){
 
+        System.out.println("受到真实伤害的实体：" + event.getEntityLiving() +
+                "。真实伤害源：" + event.getSource() +
+                "。实际伤害值：" + event.getAmount());
+    }
 }
