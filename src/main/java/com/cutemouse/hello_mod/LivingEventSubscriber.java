@@ -82,15 +82,21 @@ public class LivingEventSubscriber {
     @SubscribeEvent
     public static void LivingAttackSub(LivingAttackEvent event){
 
-        System.out.println("受到伤害的实体：" + event.getEntityLiving() +
+        /*System.out.println("受到伤害的实体：" + event.getEntityLiving() +
                 "。伤害源：" + event.getSource() +
-                "。伤害数值：" + event.getAmount());
+                "。伤害数值：" + event.getAmount());*/
         //public DamageSource getSource(){} 获取伤害源，返回的是一个DamageSource类型的对象。
         /*
         * 当玩家攻击其它生物实体时，会调用玩家对象中的LivingEntity.hurt(DamageSource, float)方法，
         * 同时经由ForgeHooks.onLivingAttack(LivingEntity, DamageSource, float)方法触发实体受到伤害事件，
         * 创建对应的LivingAttackEvent对象并给属性赋值。
         * */
+
+        //此事件可以取消，直接让某个实体无敌。
+        if (event.getEntityLiving() instanceof Sheep) {
+            event.setCanceled(true);
+            //当受到伤害的实体为羊时，让羊不受伤害，即无敌。
+        }
     }
     /*
     Player.java
@@ -128,6 +134,8 @@ public class LivingEventSubscriber {
     *
     * 如CampfireBlock类中的entityInside(BlockState p_51269_, Level p_51270_, BlockPos p_51271_, Entity p_51272_)方法中的
     * p_51272_.hurt(DamageSource.IN_FIRE, (float)this.fireDamage);
-    * 就表示有生物踏入营火中的时候，会受到来自伤害源DamageSource.IN_FIRE的伤害
+    * 就表示有实体踏入营火中的时候，会受到来自伤害源DamageSource.IN_FIRE的伤害。
     * */
+
+
 }
