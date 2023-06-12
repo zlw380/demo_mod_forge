@@ -60,12 +60,13 @@ public class Main {
 
         Player player = event.getPlayer();
 
-        player.sendMessage(new TextComponent("LeftClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.") +
+        /*player.sendMessage(new TextComponent("LeftClickBlock is fired by " + player.getDisplayName().getString() + ".From " + (player.level.isClientSide()?"Client.":"Server.") +
                 "hand = " + event.getHand()),
-                Util.NIL_UUID);
+                Util.NIL_UUID);*/
         //PlayerInteractEvent下的hand属性带有private关键字，其内部类LeftClickBlock的对象无法直接调用。
     }
 
+    //右键点击方块
     @SubscribeEvent
     public static void rightClickBlock(PlayerInteractEvent.RightClickBlock event){
 

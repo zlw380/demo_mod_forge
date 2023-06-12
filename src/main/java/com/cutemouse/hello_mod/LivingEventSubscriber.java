@@ -7,6 +7,7 @@ import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -79,9 +80,9 @@ public class LivingEventSubscriber {
     @SubscribeEvent
     public static void LivingAttackSub(LivingAttackEvent event){
 
-        System.out.println("受到伤害的实体：" + event.getEntityLiving().getDisplayName().getString() +
+        /*System.out.println("受到伤害的实体：" + event.getEntityLiving().getDisplayName().getString() +
                 "。伤害源：" + event.getSource() +
-                "。伤害数值：" + event.getAmount());
+                "。伤害数值：" + event.getAmount());*/
         //public DamageSource getSource(){} 获取伤害源，返回的是一个DamageSource类型的对象。
         /*
         * 当玩家攻击其它生物实体时，会调用玩家对象中的LivingEntity.hurt(DamageSource, float)方法，
@@ -142,8 +143,48 @@ public class LivingEventSubscriber {
     @SubscribeEvent
     public static void livingDamageSub(LivingDamageEvent event){
 
-        System.out.println("受到真实伤害的实体：" + event.getEntityLiving().getDisplayName().getString() +
+        /*System.out.println("受到真实伤害的实体：" + event.getEntityLiving().getDisplayName().getString() +
                 "。真实伤害源：" + event.getSource() +
-                "。实际伤害值：" + event.getAmount());
+                "。实际伤害值：" + event.getAmount());*/
+
+        if (event.getEntityLiving() instanceof Zombie && event.getSource().getEntity() instanceof Player){
+            event.setAmount(99999);
+            System.out.println("玩家对僵尸修改过的真伤值：" + event.getAmount());
+        }
+        //如果玩家对僵尸造成伤害，一刀99999。
+    }
+
+    //实体死亡事件
+    @SubscribeEvent
+    public static void livingDeathSub(LivingDeathEvent event){
+
+        if (event.getEntityLiving() instanceof Player){
+            //在不设置血量的情况下，即使取消死亡事件，角色依然会死亡。
+            //同时不会发送死亡信息，背包内物品不会掉落到世界，但依然会清空背包。
+            event.setCanceled(true);
+            //设置实体血量为20点，这样角色就不会死亡，背包也不会被清空。
+            event.getEntityLiving().setHealth(20);
+        }
+    }
+
+    //生物实体破坏方块事件
+    @SubscribeEvent
+    public static void livingDestroyBlockSub(LivingDestroyBlockEvent event){
+
+        /*System.out.println("生物实体" + event.getEntityLiving().getDisplayName().getString() +
+                "。破坏了位于：" + event.getPos() +
+                "的方块：" + event.getState());*/
+        //玩家破坏方块时不会触发
+        if (event.getEntityLiving() instanceof Player){
+            System.out.println("本次生物实体破坏方块事件由玩家触发。");
+        }
+        //从该事件的类的注释来看，只有末影龙、凋零、僵尸可以触发此事件。
+    }
+
+    //实体掉落物品事件
+    @SubscribeEvent
+    public static void livingDropsSub(LivingDropsEvent event){
+
+
     }
 }
