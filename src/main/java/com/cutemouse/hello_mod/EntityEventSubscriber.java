@@ -227,12 +227,12 @@ public class EntityEventSubscriber {
     public static void projectileImpactSub(ProjectileImpactEvent event){
 
         if (!event.getEntity().level.isClientSide()){
-            System.out.println("获取事件对象" + event.getEntity() +
+            /*System.out.println("获取事件对象" + event.getEntity() +
                     "。命中点坐标：" + event.getRayTraceResult().getLocation() +
                     "。命中的目标：" + event.getRayTraceResult().getType() +
                     "。飞行距离：" + event.getRayTraceResult().distanceTo(Objects.requireNonNull(event.getProjectile().getOwner())) +
                     "。发射物信息：" + event.getProjectile() +
-                    "。发射者信息：" + event.getProjectile().getOwner());
+                    "。发射者信息：" + event.getProjectile().getOwner());*/
 
             String target;
 

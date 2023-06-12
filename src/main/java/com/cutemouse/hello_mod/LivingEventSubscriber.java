@@ -79,9 +79,9 @@ public class LivingEventSubscriber {
     @SubscribeEvent
     public static void LivingAttackSub(LivingAttackEvent event){
 
-        /*System.out.println("受到伤害的实体：" + event.getEntityLiving() +
+        System.out.println("受到伤害的实体：" + event.getEntityLiving().getDisplayName().getString() +
                 "。伤害源：" + event.getSource() +
-                "。伤害数值：" + event.getAmount());*/
+                "。伤害数值：" + event.getAmount());
         //public DamageSource getSource(){} 获取伤害源，返回的是一个DamageSource类型的对象。
         /*
         * 当玩家攻击其它生物实体时，会调用玩家对象中的LivingEntity.hurt(DamageSource, float)方法，
@@ -136,10 +136,13 @@ public class LivingEventSubscriber {
 
     //实体受到真实伤害事件
     //当实体受到真实伤害时触发，因此不包括被雪球砸等不会造成真正伤害的事件。
+    //本事件是在真实伤害作用到实体的前一刻触发。
+    //此时的伤害值已经经过护甲、药品、BUFF等的补正。
+    //并且此时对应的防护资源，如护甲耐久、额外的减伤耗材等已经被消耗掉了。
     @SubscribeEvent
     public static void livingDamageSub(LivingDamageEvent event){
 
-        System.out.println("受到真实伤害的实体：" + event.getEntityLiving() +
+        System.out.println("受到真实伤害的实体：" + event.getEntityLiving().getDisplayName().getString() +
                 "。真实伤害源：" + event.getSource() +
                 "。实际伤害值：" + event.getAmount());
     }
