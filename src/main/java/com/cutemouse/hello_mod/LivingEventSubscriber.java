@@ -241,7 +241,7 @@ public class LivingEventSubscriber {
     }
 
     @SubscribeEvent
-    public static void livingEntityUseItemSub(LivingEntityUseItemEvent.Start event){
+    public static void livingEntityUseItemStartSub(LivingEntityUseItemEvent.Start event){
 
         String drinkItem = event.getItem().getItem().toString();
         //一个getItem获得物品栈ItemStack，第二个getItem获得物品Item。
@@ -255,5 +255,10 @@ public class LivingEventSubscriber {
         //拉弓时，默认的使用时间非常长。
     }
 
+    //实体切换装备事件
+    @SubscribeEvent
+    public static void livingEquipmentChangeSub(LivingEquipmentChangeEvent event){
 
+
+    }
 }
