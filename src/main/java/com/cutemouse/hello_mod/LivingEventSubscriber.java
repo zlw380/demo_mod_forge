@@ -9,11 +9,14 @@ import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Objects;
+
 
 //生物事件
 @Mod.EventBusSubscriber
@@ -185,6 +188,72 @@ public class LivingEventSubscriber {
     @SubscribeEvent
     public static void livingDropsSub(LivingDropsEvent event){
 
-
+        /*System.out.println("掉落物品的实体：" + event.getEntityLiving() +
+                "。使其掉落物品的实体是：" + event.getSource() +
+                "。\n掉落的物品集合：" + event.getDrops() +
+                "。武器抢夺附魔的等级：" + event.getLootingLevel() +
+                "。是否因受攻击掉落：" + event.isRecentlyHit());*/
+        //掉落物品的实体：Spider['蜘蛛'/26, l='ServerLevel[新的世界]', x=57.97, y=-60.00, z=5.97]。
+        //使其掉落物品的实体是：EntityDamageSource (ServerPlayer['Dev'/128, l='ServerLevel[新的世界]', x=55.20, y=-60.00, z=4.75])。
+        //掉落的物品集合：[ItemEntity['线'/296, l='ServerLevel[新的世界]', x=57.97, y=-60.00, z=5.97], ItemEntity['蜘蛛眼'/297, l='ServerLevel[新的世界]', x=57.97, y=-60.00, z=5.97]]。
+        //武器抢夺附魔的等级：3。是否因受攻击掉落：true
     }
+
+    //实体使用物品事件
+    //会在实体长时间使用物品时触发，例如吃食物，喝药水，喝牛奶，拉弓等。
+    //非玩家实体同样会触发此事件，比如小白拉弓。
+    /*@SubscribeEvent
+    public static void livingEntityUseItemSub(LivingEntityUseItemEvent event){
+
+        if (event.getEntityLiving() instanceof Player) {
+            System.out.println("玩家" + event.getEntityLiving().getDisplayName().getString() +
+                    "使用了" + event.getItem() +
+                    "。剩余时间单位：" + event.getDuration() +
+                    "。触发端：" + (event.getEntityLiving().level.isClientSide()?"客户端":"服务端"));
+        }
+    }*/
+    /*该事件会在使用物品时的每一tick同时在服务端与客户端触发
+    * 不提倡直接使用此父类
+    * 该父类的构造方法用private修饰，因此实际上都是先实例化其内部子类再调用父类的构造方法
+    * 再专门写父类的事件处理方法就多此一举了*/
+
+    /*实体使用物品事件类的四个子类：
+    * Start：开始使用物品时触发
+    * Tick：使用物品时的每一tick触发
+    * Stop：中止使用物品时触发
+    * Finish：物品使用完成时触发*/
+    @SubscribeEvent
+    public static void livingEntityUseItemFinishSub(LivingEntityUseItemEvent.Finish event){
+
+        if (!event.getEntityLiving().level.isClientSide()) {
+            if (event.getEntityLiving() instanceof Player) {
+                System.out.println("玩家使用" + event.getItem() + "后剩下了" + event.getResultStack() +
+                        "。剩余时间单位：" + event.getDuration());
+                //getResultStack()方法是获取玩家使用物品后手中剩下的物品栈
+                //如果是创造模式，玩家手中的物品不会被消耗掉，就还是原来的物品栈
+            }
+        }
+        if (event.getItem().getItem().toString().equals("apple")){
+            //吃完一个苹果后手里会出现64个附魔金苹果
+            event.setResultStack(new ItemStack(Items.ENCHANTED_GOLDEN_APPLE,64));
+            System.out.println("吃完一个苹果之后，手中的物品栈会变为：" + event.getResultStack());
+        }
+    }
+
+    @SubscribeEvent
+    public static void livingEntityUseItemSub(LivingEntityUseItemEvent.Start event){
+
+        String drinkItem = event.getItem().getItem().toString();
+        //一个getItem获得物品栈ItemStack，第二个getItem获得物品Item。
+        //System.out.println("drinkItem:" + drinkItem);
+        //drinkItem:milk_bucket
+
+        //若喝牛奶，则时间缩短为4tick
+        if (drinkItem.equals("milk_bucket")){
+            event.setDuration(4);
+        }
+        //拉弓时，默认的使用时间非常长。
+    }
+
+
 }

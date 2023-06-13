@@ -93,7 +93,7 @@ public class Main {
     //当玩家手中物品为钻石剑时，右键传送到准星对准的位置
     @SubscribeEvent
     public static void rightClickItem(PlayerInteractEvent.RightClickItem event){
-        System.out.println("触发了手中物品右键点击的事件处理函数");
+        //System.out.println("触发了手中物品右键点击的事件处理函数");
         //获取触发事件的玩家
         Player player = event.getPlayer();
         //游戏数据由服务端处理，但该事件客户端与服务端都会触发，因此需判断事件是否为服务端触发
@@ -102,7 +102,7 @@ public class Main {
         if(!clientSide){
             //获取玩家右键时手中的物品格，一格物品就是一个ItemStack，包含物品名，物品数据，物品数量等属性
             ItemStack itemStack = event.getItemStack();
-            System.out.println("手中物品格信息：" + itemStack);
+            //System.out.println("手中物品格信息：" + itemStack);
             //返回物品格对应的物品
             Item item = itemStack.getItem();
             //如果该物品为钻石剑
