@@ -259,6 +259,10 @@ public class LivingEventSubscriber {
     @SubscribeEvent
     public static void livingEquipmentChangeSub(LivingEquipmentChangeEvent event){
 
-
+        System.out.println("实体" + event.getEntityLiving() +
+                "切换了" + event.getSlot() + "部位的装备。从" +
+                event.getFrom() + "切换到了" + event.getTo());
     }
+
+
 }
