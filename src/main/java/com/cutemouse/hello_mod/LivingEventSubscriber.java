@@ -268,7 +268,14 @@ public class LivingEventSubscriber {
     @SubscribeEvent
     public static void livingExpDropSub(LivingExperienceDropEvent event){
 
+        if (event.getAttackingPlayer() != null){
+
+            event.getAttackingPlayer().sendMessage(new TextComponent("玩家" +
+                    event.getAttackingPlayer() +
+                    "攻击了" + event.getEntityLiving() +
+                    "。掉落了" + event.getDroppedExperience() + "经验。"),Util.NIL_UUID);
+        }
         System.out.println("实体" + event.getEntityLiving() +
-                "掉落了");
+                "掉落了" + event.getDroppedExperience() + "点经验。");
     }
 }
