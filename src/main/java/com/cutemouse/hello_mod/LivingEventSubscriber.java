@@ -264,5 +264,11 @@ public class LivingEventSubscriber {
                 event.getFrom() + "切换到了" + event.getTo());
     }
 
+    //实体掉落经验事件
+    @SubscribeEvent
+    public static void livingExpDropSub(LivingExperienceDropEvent event){
 
+        System.out.println("实体" + event.getEntityLiving() +
+                "掉落了");
+    }
 }
