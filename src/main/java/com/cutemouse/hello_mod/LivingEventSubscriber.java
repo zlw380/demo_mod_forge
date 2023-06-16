@@ -268,14 +268,22 @@ public class LivingEventSubscriber {
     @SubscribeEvent
     public static void livingExpDropSub(LivingExperienceDropEvent event){
 
+        //如果打的是僵尸，掉落999经验。
+        if (event.getEntityLiving() instanceof Zombie){
+            event.setDroppedExperience(999);
+        }
+
         if (event.getAttackingPlayer() != null){
 
             event.getAttackingPlayer().sendMessage(new TextComponent("玩家" +
-                    event.getAttackingPlayer() +
-                    "攻击了" + event.getEntityLiving() +
-                    "。掉落了" + event.getDroppedExperience() + "经验。"),Util.NIL_UUID);
+                    event.getAttackingPlayer().getDisplayName().getString() +
+                    "攻击了" + event.getEntityLiving().getDisplayName().getString() +
+                    "。掉落了" + event.getDroppedExperience() + "经验" +
+                    "。原本应掉落的经验是" + event.getOriginalExperience()),Util.NIL_UUID);
         }
-        System.out.println("实体" + event.getEntityLiving() +
-                "掉落了" + event.getDroppedExperience() + "点经验。");
+        /*System.out.println("实体" + event.getEntityLiving() +
+                "掉落了" + event.getDroppedExperience() + "点经验。");*/
     }
+
+
 }
