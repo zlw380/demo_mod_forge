@@ -9,6 +9,7 @@ public class InnerClassTest {
                 System.out.println("执行了add方法，这是一个在匿名内部类中实现的方法。");
             }
         });
+        //匿名内部类，简化掉了接口的实现类。直接把抽象方法的实现写在了匿名内部类里面。
     }
 
     private void method1(MyInterface myInterface){
