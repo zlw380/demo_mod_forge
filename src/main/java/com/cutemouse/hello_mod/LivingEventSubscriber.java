@@ -285,5 +285,18 @@ public class LivingEventSubscriber {
                 "掉落了" + event.getDroppedExperience() + "点经验。");*/
     }
 
+    //实体摔落事件
+    @SubscribeEvent
+    public static void livingFallSub(LivingFallEvent event){
 
+        //实体美西螈摔了下去。摔落距离是23.435236。伤害系数为1.0
+        if (event.getEntityLiving().getDisplayName().getString().equals("美西螈")){
+            event.setDistance(5);
+        }
+        //实体美西螈摔了下去。摔落距离是5.0。伤害系数为1.0
+
+        System.out.println("实体" + event.getEntityLiving().getDisplayName().getString() +
+                "摔了下去。摔落距离是" + event.getDistance() +
+                "。伤害系数为" + event.getDamageMultiplier());
+    }
 }
