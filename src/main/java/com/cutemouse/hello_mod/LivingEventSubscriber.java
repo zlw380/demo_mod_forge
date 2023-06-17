@@ -299,4 +299,5 @@ public class LivingEventSubscriber {
                 "摔了下去。摔落距离是" + event.getDistance() +
                 "。伤害系数为" + event.getDamageMultiplier());
     }
+
 }
