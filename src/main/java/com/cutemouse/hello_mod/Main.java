@@ -1,5 +1,6 @@
 package com.cutemouse.hello_mod;
 
+import com.cutemouse.hello_mod.Items.ItemRegistry;
 import net.minecraft.Util;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
@@ -13,6 +14,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 /*
 * 捕获一个事件：玩家进入世界
@@ -24,6 +26,11 @@ import net.minecraftforge.fml.common.Mod;
 //此注解表明该类是一个事件处理类，在这个类中可以写一些事件处理方法
 @Mod.EventBusSubscriber
 public class Main {
+
+    public Main(){
+        //（在参数中）获取Mod总线，并将ITEMS注册进Mod总线里面（挂载到Mod总线上）
+        ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+    }
 
     //此注解标明该方法为事件处理方法
     @SubscribeEvent
