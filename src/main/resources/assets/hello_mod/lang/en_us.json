@@ -1,3 +1,6 @@
 {
-  "item.hello_mod.soup" : "Soup"
+  "item.hello_mod.soup" : "Soup",
+  "item.hello_mod.vegetable_soup" : "VegetableSoup",
+  "item.hello_mod.fruit_cake" : "FruitCake",
+  "item.hello_mod.fruit_pizza" : "FruitPizza"
 }
