@@ -5,11 +5,14 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+//将每一个物品单独注册到DeferredRegister类常量ITEMS中，仅建议在添加少量物品时使用。
 public class ItemRegistry {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,"hello_mod");
 
-    //这里的lambda表达式相当于编写了Supplier接口中抽象方法get的实现。
+    //register方法的第二个参数是一个实现了Supplier接口的实现类的对象
+    //因此在第二个参数中需要直接定义一个实现类，这可以通过匿名内部类实现，也可以通过lambda表达式或方法引用实现。
+    //这里的lambda表达式相当于编写了Supplier接口中抽象方法get的实现。同时可以省略掉方法名get。
     //public static RegistryObject<Item> Soup = ITEMS.register("soup", ()->{return new Soup();});
     //进一步将lambda表达式简化为方法引用
     public static RegistryObject<Item> Soup = ITEMS.register("soup", com.cutemouse.hello_mod.Items.Soup::new);

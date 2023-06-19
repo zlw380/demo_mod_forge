@@ -3,7 +3,7 @@ package com.cutemouse.hello_mod.Items;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
-//定义物品Soup
+//定义物品Soup，汤
 public class Soup extends Item {
 
     public Soup(){

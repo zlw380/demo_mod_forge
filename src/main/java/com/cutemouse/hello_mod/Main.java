@@ -12,9 +12,15 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /*
 * 捕获一个事件：玩家进入世界
@@ -27,10 +33,55 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod.EventBusSubscriber
 public class Main {
 
+    public static Main instance;
+
+    public static final Logger LOGGER = LogManager.getLogger();
+
+    //定义Mod的ID，防止输错。
+    public static String MOD_ID = "hello_mod";
+
     public Main(){
+        //主类对象引用instance就指向创建的主类对象本身
+        instance = this;
+
+        //addListener方法的参数是一个实现了Consumer接口的实现类的对象
+        //因此就需要在括号中定义这个实现类，可以通过匿名内部类实现，也可以简化为lambda表达式或方法引用。
+
+        //由于在Consumer接口的两个方法中，另一个andThen方法由default修饰，可以不需要实现。
+        //可将Consumer当作只有一个accept方法的函数式接口。
+        //所以将实现类简化为lambda表达式或方法引用时，可直接编写Consumer接口中void accept(T t);方法的实现。
+        //同时可以省略掉方法名accept。
+        //此时括号内的表达式即为accept方法的实现。
+
+        //使用匿名内部类。其中，内部类的accept方法体中的this代表Consumer接口。
+        /*FMLJavaModLoadingContext.get().getModEventBus().addListener(new Consumer<FMLCommonSetupEvent>() {
+            @Override
+            public void accept(FMLCommonSetupEvent event) {
+                instance.setup(event);
+            }
+        });*/
+        //使用lambda表达式
+        //FMLJavaModLoadingContext.get().getModEventBus().addListener((FMLCommonSetupEvent event) -> {this.setup(event);});
+
+        //使用方法引用
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+
         //（在参数中）获取Mod总线，并将ITEMS注册进Mod总线里面（挂载到Mod总线上）
         ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
+
+    private void setup(final FMLCommonSetupEvent event){
+
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event){
+
+    }
+
+    /*private void onServerStarting(ServerStartingEvent event){
+
+    }*/
 
     //此注解标明该方法为事件处理方法
     @SubscribeEvent
