@@ -13,6 +13,13 @@ public class FoodList {
                     .effect((() -> new MobEffectInstance(MobEffects.REGENERATION,600,0)) ,1.0F)
                     .effect((() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE,600,0)) ,1.0F)
                     .alwaysEat().build();
+    //牛肉汉堡，生命恢复I，防火，持续30秒。
+
+    public static final FoodProperties LATTE =
+            (new FoodProperties.Builder()).nutrition(6).saturationMod(1.2F)
+                    .effect((() -> new MobEffectInstance(MobEffects.JUMP,300,0)),1.0F)
+                    .alwaysEat().build();
+    //拿铁，跳跃提升，持续15秒。
 }
 
 /*public static final FoodProperties ENCHANTED_GOLDEN_APPLE = (

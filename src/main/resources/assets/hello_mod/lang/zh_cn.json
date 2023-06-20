@@ -3,5 +3,6 @@
   "item.hello_mod.vegetable_soup" : "蔬菜汤",
   "item.hello_mod.fruit_cake" : "水果蛋糕",
   "item.hello_mod.fruit_pizza" : "水果披萨",
-  "item.hello_mod.beef_burger" : "牛肉汉堡"
+  "item.hello_mod.beef_burger" : "牛肉汉堡",
+  "item.hello_mod.latte" : "拿铁"
 }
