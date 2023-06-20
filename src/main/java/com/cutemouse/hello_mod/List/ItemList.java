@@ -10,4 +10,6 @@ public class ItemList {
     public static Item fruitCake;
 
     public static Item fruitPizza;
+
+    public static Item beefBurger;
 }

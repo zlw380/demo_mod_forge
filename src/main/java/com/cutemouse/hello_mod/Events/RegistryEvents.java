@@ -1,8 +1,10 @@
 package com.cutemouse.hello_mod.Events;
 
+import com.cutemouse.hello_mod.List.FoodList;
 import com.cutemouse.hello_mod.List.ItemList;
 import com.cutemouse.hello_mod.Main;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -35,7 +37,9 @@ public class RegistryEvents {
                 ItemList.fruitCake =
                         new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS).stacksTo(8)).setRegistryName(location("fruit_cake")),
                 ItemList.fruitPizza =
-                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS).stacksTo(4)).setRegistryName(location("fruit_pizza"))
+                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS).stacksTo(4)).setRegistryName(location("fruit_pizza")),
+                ItemList.beefBurger =
+                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodList.BEEF_BURGER).stacksTo(4)).setRegistryName(location("beef_burger"))
         );
         //这里的注册名有正则表达式约束，不允许使用大写英文字母，仅允许使用小写字母a-z，数字0-9，字符/._-。
         //Exception message: net.minecraft.ResourceLocationException: Non [a-z0-9/._-] character in path of location: hello_mod:vegetableSoup
