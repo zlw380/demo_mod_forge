@@ -61,7 +61,7 @@ public class RegistryEvents {
         event.getRegistry().registerAll(
                 BlockList.laffeyBlock =
                         new Block(BlockBehaviour.Properties.of(Material.METAL,MaterialColor.METAL)
-                                .strength(2.0F,6.0F).sound(SoundType.METAL))
+                                .strength(2.0F,50.0F).sound(SoundType.METAL))
                                 .setRegistryName(location("laffey_block"))
         );
 
