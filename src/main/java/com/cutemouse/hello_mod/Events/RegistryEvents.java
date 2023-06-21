@@ -1,5 +1,6 @@
 package com.cutemouse.hello_mod.Events;
 
+import com.cutemouse.hello_mod.List.BlockList;
 import com.cutemouse.hello_mod.List.FoodList;
 import com.cutemouse.hello_mod.List.ItemList;
 import com.cutemouse.hello_mod.Main;
@@ -7,6 +8,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -41,10 +47,29 @@ public class RegistryEvents {
                 ItemList.beefBurger =
                         new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodList.BEEF_BURGER).stacksTo(4)).setRegistryName(location("beef_burger")),
                 ItemList.latte =
-                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodList.LATTE).stacksTo(8)).setRegistryName(location("latte"))
+                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodList.LATTE).stacksTo(8)).setRegistryName(location("latte")),
+                ItemList.laffeyBlock =
+                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)).setRegistryName(location("laffey_block"))
         );
         //这里的注册名有正则表达式约束，不允许使用大写英文字母，仅允许使用小写字母a-z，数字0-9，字符/._-。
         //Exception message: net.minecraft.ResourceLocationException: Non [a-z0-9/._-] character in path of location: hello_mod:vegetableSoup
+    }
+
+    @SubscribeEvent
+    public static void registerBlocks(final RegistryEvent.Register<Block> event){
+
+        event.getRegistry().registerAll(
+                BlockList.laffeyBlock =
+                        new Block(BlockBehaviour.Properties.of(Material.METAL,MaterialColor.METAL)
+                                .strength(2.0F,6.0F).sound(SoundType.METAL))
+                                .setRegistryName(location("laffey_block"))
+        );
+
+        /*
+        * public static final Block IRON_BLOCK =
+        *   register("iron_block", new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).
+        *   requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+        * */
     }
 
     private static ResourceLocation location(String name) {

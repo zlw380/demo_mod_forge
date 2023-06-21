@@ -14,4 +14,6 @@ public class ItemList {
     public static Item beefBurger;
 
     public static Item latte;
+
+    public static Item laffeyBlock;
 }
