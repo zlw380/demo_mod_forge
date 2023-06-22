@@ -2,6 +2,7 @@
   "parent" : "block/cube_all",
   "textures" :
   {
-    "all" : "hello_mod:block/laffey_block"
+    "all" : "hello_mod:block/laffey_block",
+    "north" : "hello_mod:block/laffey_block_pink"
   }
 }
