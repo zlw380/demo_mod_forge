@@ -6,6 +6,8 @@
     "north" : "hello_mod:block/laffey_block_pink",
     "south" : "hello_mod:block/laffey_block_blue",
     "east" : "hello_mod:block/laffey_block_yellow",
-    "west" : "hello_mod:block/laffey_block_green"
+    "west" : "hello_mod:block/laffey_block_green",
+    "up" : "hello_mod:block/laffey_block_orange",
+    "down" : "hello_mod:block/laffey_block_purple"
   }
 }
