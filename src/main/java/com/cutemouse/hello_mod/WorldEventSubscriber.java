@@ -35,10 +35,10 @@ public class WorldEventSubscriber {
 
         Player player = event.getPlayer();
 
-        player.sendMessage(new TextComponent(
+        /*player.sendMessage(new TextComponent(
                         "玩家" + player.getDisplayName().getString() + "破坏了方块，获得了" +
                         event.getExpToDrop() + "点经验。" + "被破坏的方块状态：" + event.getState()),
-                Util.NIL_UUID);
+                Util.NIL_UUID);*/
 
         //System.out.println("被破坏的方块状态：" + event.getState());
     }
@@ -50,11 +50,11 @@ public class WorldEventSubscriber {
         if (event.getEntity() instanceof Player){
 
             Player player = (Player) event.getEntity();
-            player.sendMessage(new TextComponent("玩家" + player.getDisplayName().getString() +
+            /*player.sendMessage(new TextComponent("玩家" + player.getDisplayName().getString() +
                     "放置了方块。放置快照信息：" + event.getBlockSnapshot() +
                     "。放置的方块状态：" + event.getPlacedBlock() +
                     "。是对着" + event.getPlacedAgainst() + "方块放置的。"
-            ),Util.NIL_UUID);
+            ),Util.NIL_UUID);*/
         }
     }
 }
