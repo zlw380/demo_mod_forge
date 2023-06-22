@@ -295,9 +295,9 @@ public class LivingEventSubscriber {
         }
         //实体美西螈摔了下去。摔落距离是5.0。伤害系数为1.0
 
-        System.out.println("实体" + event.getEntityLiving().getDisplayName().getString() +
+        /*System.out.println("实体" + event.getEntityLiving().getDisplayName().getString() +
                 "摔了下去。摔落距离是" + event.getDistance() +
-                "。伤害系数为" + event.getDamageMultiplier());
+                "。伤害系数为" + event.getDamageMultiplier());*/
     }
 
 }

@@ -63,12 +63,18 @@ public class RegistryEvents {
 
         event.getRegistry().registerAll(
                 BlockList.laffeyBlock =
-                        new Block(BlockBehaviour.Properties.of(Material.METAL,MaterialColor.METAL)
-                                .strength(2.0F,50.0F).sound(SoundType.METAL))
+                        new Block(BlockBehaviour.Properties.of(Material.STONE,MaterialColor.STONE)
+                                .requiresCorrectToolForDrops()
+                                .strength(1.5F,6.0F).sound(SoundType.METAL))
                                 .setRegistryName(location("laffey_block"))
         );
 
         /*
+        * public static final Block STONE =
+        *   register("stone", new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).
+        *   requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+        * 以上是石头的方块定义
+        *
         * public static final Block IRON_BLOCK =
         *   register("iron_block", new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).
         *   requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
