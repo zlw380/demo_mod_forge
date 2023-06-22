@@ -5,5 +5,5 @@
   "item.hello_mod.fruit_pizza" : "FruitPizza",
   "item.hello_mod.beef_burger" : "BeefBurger",
   "item.hello_mod.latte" : "Latte",
-  "item.hello_mod.laffey_block" : "LaffeyBlock"
+  "block.hello_mod.laffey_block" : "LaffeyBlock"
 }
