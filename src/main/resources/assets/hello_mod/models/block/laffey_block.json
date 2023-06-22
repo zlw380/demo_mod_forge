@@ -3,6 +3,9 @@
   "textures" :
   {
     "all" : "hello_mod:block/laffey_block",
-    "north" : "hello_mod:block/laffey_block_pink"
+    "north" : "hello_mod:block/laffey_block_pink",
+    "south" : "hello_mod:block/laffey_block_blue",
+    "east" : "hello_mod:block/laffey_block_yellow",
+    "west" : "hello_mod:block/laffey_block_green"
   }
 }
