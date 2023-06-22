@@ -6,6 +6,7 @@ import com.cutemouse.hello_mod.List.ItemList;
 import com.cutemouse.hello_mod.Main;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -19,6 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.Logger;
 
 import javax.xml.stream.Location;
+import java.util.Objects;
 
 //把所有的物品、方块、流体等全部在该类内进行注册
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -49,7 +51,8 @@ public class RegistryEvents {
                 ItemList.latte =
                         new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodList.LATTE).stacksTo(8)).setRegistryName(location("latte")),
                 ItemList.laffeyBlock =
-                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)).setRegistryName(location("laffey_block"))
+                        new BlockItem(BlockList.laffeyBlock,new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS))
+                                .setRegistryName(Objects.requireNonNull(BlockList.laffeyBlock.getRegistryName()))
         );
         //这里的注册名有正则表达式约束，不允许使用大写英文字母，仅允许使用小写字母a-z，数字0-9，字符/._-。
         //Exception message: net.minecraft.ResourceLocationException: Non [a-z0-9/._-] character in path of location: hello_mod:vegetableSoup
