@@ -64,12 +64,15 @@ public class RegistryEvents {
         event.getRegistry().registerAll(
                 BlockList.laffeyBlock =
                         new Block(BlockBehaviour.Properties.of(Material.STONE,MaterialColor.STONE)
-                                .requiresCorrectToolForDrops()
-                                .strength(1.5F,6.0F).sound(SoundType.METAL))
-                                .setRegistryName(location("laffey_block"))
+                        .strength(0.5F).sound(SoundType.STONE)).setRegistryName(location("laffey_block"))
         );
 
         /*
+        * public static final Block DIRT =
+        *   register("dirt", new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT)
+        *   .strength(0.5F).sound(SoundType.GRAVEL)));
+        * 沙子的方块定义
+        *
         * public static final Block STONE =
         *   register("stone", new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).
         *   requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
@@ -82,24 +85,24 @@ public class RegistryEvents {
         * 以上是铁块的方块定义，可见铁块被设置为需要正确的工具进行采集并掉落，自身的破坏时间为5.0F，抗爆能力为6.0F，会发出金属音。
         *
         * 在BlockBehaviour.Properties中调用requiresCorrectToolForDrops()方法会使方块在被破坏时触发执行BreakEvent类对象中的
-        * ForgeHooks.isCorrectToolForDrops(state, player)方法，两个参数分别提供方块状态与玩家信息，判断玩家是否可以破坏此方块。
+        * ForgeHooks.isCorrectToolForDrops(state, player)方法，两个参数分别提供方块状态与玩家信息，判断玩家是否可以成功采集此方块。
         *
         * 执行链：
-        * 1.ForgeHooks.isCorrectToolForDrops(state, player)中，若方块的requiresCorrectToolForDrops属性为false，则默认可以成功破坏方块；
-        * 若方块的requiresCorrectToolForDrops属性为true，则调用玩家对象的hasCorrectToolForDrops(state)方法判断是否可以破坏方块并返回布尔值。
+        * 1.ForgeHooks.isCorrectToolForDrops(state, player)中，若方块的requiresCorrectToolForDrops属性为false，则默认可以成功采集方块；
+        * 若方块的requiresCorrectToolForDrops属性为true，则调用玩家对象的hasCorrectToolForDrops(state)方法判断是否可以成功采集方块并返回布尔值。
         *
         * 2.hasCorrectToolForDrops(state)方法中调用Player对象中的
         * doPlayerHarvestCheck(this,
         *                      p_36299_,
         *                      !p_36299_.requiresCorrectToolForDrops() || this.inventory.getSelected().isCorrectToolForDrops(p_36299_))方法。
         * 参数分别为：（1）this代表玩家对象本身；（2）p_36299_为方块状态；
-        *           （3）一个布尔值，决定方块是否能够被成功破坏。如果该参数为true，则在此次BreakEvent事件中方块能够被破坏。
+        *           （3）一个布尔值，决定方块是否能够被成功采集。如果该参数为true，则在此次BreakEvent事件中方块能够被成功采集。
         * 因此，根据该实参的表达式可以看出，当方块的requiresCorrectToolForDrops属性为false
-        * 或 调用isCorrectToolForDrops(p_36299_)方法的返回值为true时，实参值即为true，意味着方块可以被破坏。
+        * 或 调用isCorrectToolForDrops(p_36299_)方法的返回值为true时，实参值即为true，意味着方块可以被成功采集。
         *
         * 3.执行isCorrectToolForDrops(p_36299_)方法，该方法中又调用了IForgeItem接口的实现类Item的子类DiggerItem中的
-        * isCorrectToolForDrops(ItemStack stack, BlockState state)方法，参数为玩家手中持有物品的物品栈与要被破坏方块的方块状态，
-        * 以判断玩家手中的物品的挖掘等级是否能够破坏此方块。
+        * isCorrectToolForDrops(ItemStack stack, BlockState state)方法，参数为玩家手中持有物品的物品栈与要被采集方块的方块状态，
+        * 以判断玩家手中的物品的挖掘等级是否能够成功采集此方块。
         * Params:
         *   stack – The itemstack used to harvest the block
         *   state – The block trying to harvest
