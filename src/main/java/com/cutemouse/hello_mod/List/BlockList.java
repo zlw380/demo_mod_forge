@@ -5,4 +5,6 @@ import net.minecraft.world.level.block.Block;
 public class BlockList {
 
     public static Block laffeyBlock;
+
+    public static Block keqingBlock;
 }

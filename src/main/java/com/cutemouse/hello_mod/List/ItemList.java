@@ -16,4 +16,6 @@ public class ItemList {
     public static Item latte;
 
     public static Item laffeyBlock;
+
+    public static Item keqingBlock;
 }

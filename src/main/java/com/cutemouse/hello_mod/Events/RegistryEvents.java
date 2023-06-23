@@ -52,7 +52,10 @@ public class RegistryEvents {
                         new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodList.LATTE).stacksTo(8)).setRegistryName(location("latte")),
                 ItemList.laffeyBlock =
                         new BlockItem(BlockList.laffeyBlock,new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS))
-                                .setRegistryName(Objects.requireNonNull(BlockList.laffeyBlock.getRegistryName()))
+                                .setRegistryName(Objects.requireNonNull(BlockList.laffeyBlock.getRegistryName())),
+                ItemList.keqingBlock =
+                        new BlockItem(BlockList.keqingBlock,new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS))
+                                .setRegistryName(Objects.requireNonNull(BlockList.keqingBlock.getRegistryName()))
         );
         //这里的注册名有正则表达式约束，不允许使用大写英文字母，仅允许使用小写字母a-z，数字0-9，字符/._-。
         //Exception message: net.minecraft.ResourceLocationException: Non [a-z0-9/._-] character in path of location: hello_mod:vegetableSoup
@@ -64,7 +67,10 @@ public class RegistryEvents {
         event.getRegistry().registerAll(
                 BlockList.laffeyBlock =
                         new Block(BlockBehaviour.Properties.of(Material.STONE,MaterialColor.STONE)
-                        .strength(0.5F).sound(SoundType.STONE)).setRegistryName(location("laffey_block"))
+                        .strength(0.5F).sound(SoundType.STONE)).setRegistryName(location("laffey_block")),
+                BlockList.keqingBlock =
+                        new Block(BlockBehaviour.Properties.of(Material.STONE)
+                        .strength(0.5F).sound(SoundType.STONE)).setRegistryName(location("keqing_block"))
         );
 
         /*
