@@ -9,5 +9,5 @@ public class BlockList {
 
     public static Block keqingBlock;
 
-    public static Block pinkOre;
+    public static HelloModOreBlock pinkOre;
 }

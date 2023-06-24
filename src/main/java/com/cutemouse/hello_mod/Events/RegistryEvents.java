@@ -79,7 +79,7 @@ public class RegistryEvents {
                         new Block(BlockBehaviour.Properties.of(Material.STONE)
                         .strength(0.5F).sound(SoundType.STONE)).setRegistryName(location("keqing_block")),
                 BlockList.pinkOre =
-                        new HelloModOreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops()
+                        (HelloModOreBlock) new HelloModOreBlock(BlockBehaviour.Properties.of(Material.STONE)
                         .strength(0.5F,3.0F), UniformInt.of(1,3)).setRegistryName(location("pink_ore"))
         );
 
