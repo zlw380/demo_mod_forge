@@ -1,5 +1,6 @@
 package com.cutemouse.hello_mod.Items;
 
+import com.cutemouse.hello_mod.Events.RegistryEvents;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
@@ -12,6 +13,6 @@ public class Soup extends Item {
 
         //Properties类的tab方法用来设置物品的分类
         //这里的CreativeModeTab类参数就表示该物品会在哪个分类下显示，这里的TAB_MATERIALS就是杂项分类（显示为岩浆桶）。
-        super(new Properties().tab(CreativeModeTab.TAB_MATERIALS));
+        super(new Properties().tab(RegistryEvents.HELLO_MOD_ITEM));
     }
 }

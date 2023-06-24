@@ -31,6 +31,9 @@ public class RegistryEvents {
 
     public static final String MOD_ID = Main.MOD_ID;
 
+    public static final CreativeModeTab HELLO_MOD_BLOCK = Main.HELLO_MOD_BLOCK_TAB;
+    public static final CreativeModeTab HELLO_MOD_ITEM = Main.HELLO_MOD_ITEM_TAB;
+
     @SubscribeEvent
     public static void registerItems(final RegistryEvent.Register<Item> event){
 
@@ -41,20 +44,20 @@ public class RegistryEvents {
         //这种注册物品的方法与之前为每个物品单独创建实体类并注册到DeferredRegister类常量ITEMS中的方法是等效的。
         event.getRegistry().registerAll(
                 ItemList.vegetableSoup =
-                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS).stacksTo(16)).setRegistryName(location("vegetable_soup")),
+                        new Item(new Item.Properties().tab(HELLO_MOD_ITEM).food(FoodList.LATTE).stacksTo(16)).setRegistryName(location("vegetable_soup")),
                 ItemList.fruitCake =
-                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS).stacksTo(8)).setRegistryName(location("fruit_cake")),
+                        new Item(new Item.Properties().tab(HELLO_MOD_ITEM).food(FoodList.LATTE).stacksTo(8)).setRegistryName(location("fruit_cake")),
                 ItemList.fruitPizza =
-                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_MATERIALS).stacksTo(4)).setRegistryName(location("fruit_pizza")),
+                        new Item(new Item.Properties().tab(HELLO_MOD_ITEM).food(FoodList.LATTE).stacksTo(4)).setRegistryName(location("fruit_pizza")),
                 ItemList.beefBurger =
-                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodList.BEEF_BURGER).stacksTo(4)).setRegistryName(location("beef_burger")),
+                        new Item(new Item.Properties().tab(HELLO_MOD_ITEM).food(FoodList.BEEF_BURGER).stacksTo(4)).setRegistryName(location("beef_burger")),
                 ItemList.latte =
-                        new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodList.LATTE).stacksTo(8)).setRegistryName(location("latte")),
+                        new Item(new Item.Properties().tab(HELLO_MOD_ITEM).food(FoodList.LATTE).stacksTo(8)).setRegistryName(location("latte")),
                 ItemList.laffeyBlock =
-                        new BlockItem(BlockList.laffeyBlock,new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS))
+                        new BlockItem(BlockList.laffeyBlock,new Item.Properties().tab(HELLO_MOD_BLOCK))
                                 .setRegistryName(Objects.requireNonNull(BlockList.laffeyBlock.getRegistryName())),
                 ItemList.keqingBlock =
-                        new BlockItem(BlockList.keqingBlock,new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS))
+                        new BlockItem(BlockList.keqingBlock,new Item.Properties().tab(HELLO_MOD_BLOCK))
                                 .setRegistryName(Objects.requireNonNull(BlockList.keqingBlock.getRegistryName()))
         );
         //这里的注册名有正则表达式约束，不允许使用大写英文字母，仅允许使用小写字母a-z，数字0-9，字符/._-。

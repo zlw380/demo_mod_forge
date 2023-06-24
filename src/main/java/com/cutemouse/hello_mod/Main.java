@@ -1,9 +1,12 @@
 package com.cutemouse.hello_mod;
 
 import com.cutemouse.hello_mod.Items.ItemRegistry;
+import com.cutemouse.hello_mod.List.ItemList;
 import net.minecraft.Util;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.util.datafix.fixes.ItemCustomNameToComponentFix;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -20,6 +23,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 
 /*
@@ -39,6 +43,9 @@ public class Main {
 
     //定义Mod的ID，防止输错。
     public static String MOD_ID = "hello_mod";
+
+    public static final CreativeModeTab HELLO_MOD_BLOCK_TAB = new Main.HelloModBlockTab("hello_mod_block");
+    public static final CreativeModeTab HELLO_MOD_ITEM_TAB = new Main.HelloModItemTab("hello_mod_item");
 
     public Main(){
         //主类对象引用instance就指向创建的主类对象本身
@@ -82,6 +89,30 @@ public class Main {
     /*private void onServerStarting(ServerStartingEvent event){
 
     }*/
+
+    public static class HelloModBlockTab extends CreativeModeTab{
+
+        public HelloModBlockTab(String label) {
+            super(label);
+        }
+
+        @Override
+        public @NotNull ItemStack makeIcon() {
+            return new ItemStack(ItemList.laffeyBlock);
+        }
+    }
+
+    public static class HelloModItemTab extends CreativeModeTab{
+
+        public HelloModItemTab(String label) {
+            super(label);
+        }
+
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ItemList.beefBurger);
+        }
+    }
 
     //此注解标明该方法为事件处理方法
     @SubscribeEvent

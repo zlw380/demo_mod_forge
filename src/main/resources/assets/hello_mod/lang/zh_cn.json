@@ -6,5 +6,7 @@
   "item.hello_mod.beef_burger" : "牛肉汉堡",
   "item.hello_mod.latte" : "拿铁",
   "block.hello_mod.laffey_block" : "拉菲方块",
-  "block.hello_mod.keqing_block" : "刻晴方块"
+  "block.hello_mod.keqing_block" : "刻晴方块",
+  "itemGroup.hello_mod_block" : "hello_mod方块",
+  "itemGroup.hello_mod_item" : "hello_mod物品"
 }
