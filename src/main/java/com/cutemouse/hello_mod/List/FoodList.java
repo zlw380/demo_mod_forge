@@ -4,7 +4,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
-//食物列表
+//食物参数（使用效果）列表
 public class FoodList {
 
     //利用FoodProperties的静态内部类Builder的对象创建一个食物（FoodProperties）对象
@@ -18,7 +18,7 @@ public class FoodList {
     public static final FoodProperties LATTE =
             (new FoodProperties.Builder()).nutrition(6).saturationMod(1.2F)
                     .effect((() -> new MobEffectInstance(MobEffects.JUMP,300,0)),1.0F)
-                    .alwaysEat().build();
+                    .fast().alwaysEat().build();
     //拿铁，跳跃提升，持续15秒。
 }
 

@@ -1,11 +1,12 @@
 package com.cutemouse.hello_mod.List;
 
 
+import com.cutemouse.hello_mod.Items.DrinkItem;
 import net.minecraft.world.item.Item;
 
 public class ItemList {
 
-    public static Item vegetableSoup;
+    public static DrinkItem vegetableSoup;
 
     public static Item fruitCake;
 
@@ -13,9 +14,11 @@ public class ItemList {
 
     public static Item beefBurger;
 
-    public static Item latte;
+    public static DrinkItem latte;
 
     public static Item laffeyBlock;
 
     public static Item keqingBlock;
+
+    public static Item pinkOre;
 }

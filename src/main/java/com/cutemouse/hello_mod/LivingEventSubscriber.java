@@ -248,9 +248,9 @@ public class LivingEventSubscriber {
         //System.out.println("drinkItem:" + drinkItem);
         //drinkItem:milk_bucket
 
-        //若喝牛奶，则时间缩短为4tick
+        //若喝牛奶，则时间缩短为8ticks
         if (drinkItem.equals("milk_bucket")){
-            event.setDuration(4);
+            event.setDuration(8);
         }
         //拉弓时，默认的使用时间非常长。
     }

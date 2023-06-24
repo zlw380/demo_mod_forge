@@ -8,5 +8,6 @@
   "block.hello_mod.laffey_block" : "拉菲方块",
   "block.hello_mod.keqing_block" : "刻晴方块",
   "itemGroup.hello_mod_block" : "hello_mod方块",
-  "itemGroup.hello_mod_item" : "hello_mod物品"
+  "itemGroup.hello_mod_item" : "hello_mod物品",
+  "block.hello_mod.pink_ore" : "粉色矿石"
 }
