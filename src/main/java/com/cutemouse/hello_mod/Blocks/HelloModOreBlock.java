@@ -1,4 +1,4 @@
-package com.cutemouse.hello_mod.Miscellaneous;
+package com.cutemouse.hello_mod.Blocks;
 
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.OreBlock;

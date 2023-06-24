@@ -1,6 +1,6 @@
 package com.cutemouse.hello_mod.List;
 
-import com.cutemouse.hello_mod.Miscellaneous.HelloModOreBlock;
+import com.cutemouse.hello_mod.Blocks.HelloModOreBlock;
 import net.minecraft.world.level.block.Block;
 
 public class BlockList {

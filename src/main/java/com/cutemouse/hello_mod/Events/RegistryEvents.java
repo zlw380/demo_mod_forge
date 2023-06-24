@@ -5,7 +5,7 @@ import com.cutemouse.hello_mod.List.BlockList;
 import com.cutemouse.hello_mod.List.FoodList;
 import com.cutemouse.hello_mod.List.ItemList;
 import com.cutemouse.hello_mod.Main;
-import com.cutemouse.hello_mod.Miscellaneous.HelloModOreBlock;
+import com.cutemouse.hello_mod.Blocks.HelloModOreBlock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
