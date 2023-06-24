@@ -7,6 +7,7 @@ import com.cutemouse.hello_mod.List.ItemList;
 import com.cutemouse.hello_mod.Main;
 import com.cutemouse.hello_mod.Miscellaneous.HelloModOreBlock;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -78,11 +79,15 @@ public class RegistryEvents {
                         new Block(BlockBehaviour.Properties.of(Material.STONE)
                         .strength(0.5F).sound(SoundType.STONE)).setRegistryName(location("keqing_block")),
                 BlockList.pinkOre =
-                        new HelloModOreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                        .strength(0.5F,3.0F)).setRegistryName(location("pink_ore"))
+                        new HelloModOreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops()
+                        .strength(0.5F,3.0F), UniformInt.of(1,3)).setRegistryName(location("pink_ore"))
         );
 
         /*
+        * 铁矿石：new OreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F))
+        *
+        * 钻石矿石：new OreBlock(BlockBehaviour.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F), UniformInt.of(3, 7))
+        *
         * public static final Block DIRT =
         *   register("dirt", new Block(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT)
         *   .strength(0.5F).sound(SoundType.GRAVEL)));
