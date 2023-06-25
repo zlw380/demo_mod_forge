@@ -9,5 +9,6 @@
   "block.hello_mod.keqing_block" : "刻晴方块",
   "itemGroup.hello_mod_block" : "hello_mod方块",
   "itemGroup.hello_mod_item" : "hello_mod物品",
-  "block.hello_mod.pink_ore" : "粉色矿石"
+  "block.hello_mod.pink_ore" : "粉色矿石",
+  "item.hello_mod.pink_ingot" : "粉色锭"
 }

@@ -71,14 +71,14 @@ public class Main {
         //FMLJavaModLoadingContext.get().getModEventBus().addListener((FMLCommonSetupEvent event) -> {this.setup(event);});
 
         //使用方法引用
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
         //（在参数中）获取Mod总线，并将ITEMS注册进Mod总线里面（挂载到Mod总线上）
         ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    private void setup(final FMLCommonSetupEvent event){
+    private void commonSetup(final FMLCommonSetupEvent event){
 
     }
 

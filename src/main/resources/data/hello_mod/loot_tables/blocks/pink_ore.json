@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "hello_mod:pink_ore"
+          "name": "hello_mod:pink_ingot"
         }
       ],
       "conditions": [

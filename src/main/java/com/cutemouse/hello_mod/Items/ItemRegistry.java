@@ -1,9 +1,12 @@
 package com.cutemouse.hello_mod.Items;
 
+import com.cutemouse.hello_mod.Main;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 //将每一个物品单独注册到DeferredRegister类常量ITEMS中，仅建议在添加少量物品时使用。
 public class ItemRegistry {
@@ -16,6 +19,14 @@ public class ItemRegistry {
     //public static RegistryObject<Item> Soup = ITEMS.register("soup", ()->{return new Soup();});
     //进一步将lambda表达式简化为方法引用
     public static RegistryObject<Item> Soup = ITEMS.register("soup", com.cutemouse.hello_mod.Items.Soup::new);
+
+    public static RegistryObject<Item> PINK_INGOT = ITEMS.register("pink_ingot",
+            new Supplier<Item>() {
+                @Override
+                public Item get() {
+                    return new Item(new Item.Properties().tab(Main.HELLO_MOD_BLOCK_TAB));
+                }
+            });
 }
 
 /*

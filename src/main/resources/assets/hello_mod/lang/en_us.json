@@ -6,5 +6,7 @@
   "item.hello_mod.beef_burger" : "BeefBurger",
   "item.hello_mod.latte" : "Latte",
   "block.hello_mod.laffey_block" : "LaffeyBlock",
-  "block.hello_mod.keqing_block" : "KeqingBlock"
+  "block.hello_mod.keqing_block" : "KeqingBlock",
+  "block.hello_mod.pink_ore" : "PinkOre",
+  "item.hello_mod.pink_ingot" : "PinkIngot"
 }
