@@ -20,13 +20,15 @@ public class ItemRegistry {
     //进一步将lambda表达式简化为方法引用
     public static RegistryObject<Item> Soup = ITEMS.register("soup", com.cutemouse.hello_mod.Items.Soup::new);
 
-    public static RegistryObject<Item> PINK_INGOT = ITEMS.register("pink_ingot",
+    public static final RegistryObject<Item> PINK_INGOT = ITEMS.register("pink_ingot",
             new Supplier<Item>() {
                 @Override
                 public Item get() {
                     return new Item(new Item.Properties().tab(Main.HELLO_MOD_BLOCK_TAB));
                 }
             });
+
+
 }
 
 /*
