@@ -1,0 +1,6 @@
+{
+  "variants":
+  {
+    "" : {"model" : "hello_mod:block/ferrous_iron_block"}
+  }
+}

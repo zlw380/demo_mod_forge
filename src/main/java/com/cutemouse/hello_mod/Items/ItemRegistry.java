@@ -1,6 +1,8 @@
 package com.cutemouse.hello_mod.Items;
 
+import com.cutemouse.hello_mod.Blocks.BlockRegistry;
 import com.cutemouse.hello_mod.Main;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,7 +30,11 @@ public class ItemRegistry {
                 }
             });
 
+    public static final RegistryObject<Item> FERROUS_IRON_BLOCK = ITEMS.register("ferrous_iron_block",
+            () -> {return new BlockItem(BlockRegistry.FERROUS_IRON_BLOCK.get(),new Item.Properties().tab(Main.HELLO_MOD_BLOCK_TAB));});
 
+    public static final RegistryObject<Item> MINT_SAND = ITEMS.register("mint_sand",
+            () -> {return new BlockItem(BlockRegistry.MINT_SAND.get(),new Item.Properties().tab(Main.HELLO_MOD_BLOCK_TAB));});
 }
 
 /*

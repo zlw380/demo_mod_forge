@@ -12,6 +12,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -78,6 +79,8 @@ public class RegistryEvents {
                 BlockList.keqingBlock =
                         new Block(BlockBehaviour.Properties.of(Material.STONE)
                         .strength(0.5F).sound(SoundType.STONE)).setRegistryName(location("keqing_block")),
+                /*BlockList.keqingBlock =
+                        new Block(BlockBehaviour.Properties.copy(Blocks.STONE)).setRegistryName(location("keqing_block")),*/
                 BlockList.pinkOre =
                         (HelloModOreBlock) new HelloModOreBlock(BlockBehaviour.Properties.of(Material.STONE)
                         .strength(0.5F,3.0F), UniformInt.of(1,3)).setRegistryName(location("pink_ore"))
