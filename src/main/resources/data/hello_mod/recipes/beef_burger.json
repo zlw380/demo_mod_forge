@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [
+    "A",
+    "B",
+    "A"
+  ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:bread"
+    },
+    "B" : {
+      "item" : "minecraft:cooked_beef"
+    }
+  },
+  "result" : {
+    "item" : "hello_mod:beef_burger"
+  }
+}
