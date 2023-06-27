@@ -1,0 +1,10 @@
+{
+  "type" : "minecraft:smelting",
+  "cookingtime" : 100,
+  "experience" : 1,
+  "group" : "pink_ingot",
+  "ingredient" :{
+    "item" : "hello_mod:pink_ore"
+  },
+  "result" : "hello_mod:pink_ingot"
+}
