@@ -3,9 +3,7 @@ package com.cutemouse.hello_mod.Items;
 import com.cutemouse.hello_mod.Blocks.BlockRegistry;
 import com.cutemouse.hello_mod.Main;
 import com.cutemouse.hello_mod.Tabs.CreativeModTabs;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -39,7 +37,12 @@ public class ItemRegistry {
             () -> {return new BlockItem(BlockRegistry.MINT_SAND.get(),new Item.Properties().tab(Main.HELLO_MOD_BLOCK_TAB));});
 
     public static final RegistryObject<Item> PINK_PICKAXE = ITEMS.register("pink_pickaxe",
-            () -> new Item(new Item.Properties().tab(CreativeModTabs.HELLO_MOD_TOOLS)));
+            () -> new PickaxeItem(Tiers.DIAMOND,1,-2.8F,(new Item.Properties()).tab(CreativeModTabs.HELLO_MOD_TOOLS)));
+    /*  斧工具构造器参数：1.挖掘等级 2.攻击伤害基数 3.攻击速度基数 4.Item对象
+        public static final Item DIAMOND_PICKAXE =
+            registerItem("diamond_pickaxe", new PickaxeItem(Tiers.DIAMOND, 1, -2.8F, (new Item.Properties())
+            .tab(CreativeModeTab.TAB_TOOLS)));
+    */
 }
 
 /*
