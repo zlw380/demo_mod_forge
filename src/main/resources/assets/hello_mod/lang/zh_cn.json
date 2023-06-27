@@ -12,5 +12,7 @@
   "block.hello_mod.pink_ore" : "粉色矿石",
   "item.hello_mod.pink_ingot" : "粉色锭",
   "block.hello_mod.ferrous_iron_block" : "亚铁块",
-  "block.hello_mod.mint_sand" : "薄荷沙"
+  "block.hello_mod.mint_sand" : "薄荷沙",
+  "item.hello_mod.pink_pickaxe" : "粉色镐",
+  "itemGroup.hello_mod_tools" : "hello_mod工具"
 }

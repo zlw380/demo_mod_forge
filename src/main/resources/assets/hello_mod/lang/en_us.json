@@ -10,5 +10,6 @@
   "block.hello_mod.pink_ore" : "PinkOre",
   "item.hello_mod.pink_ingot" : "PinkIngot",
   "block.hello_mod.ferrous_iron_block" : "FerrousIronBlock",
-  "block.hello_mod.mint_sand" : "MintSand"
+  "block.hello_mod.mint_sand" : "MintSand",
+  "item.hello_mod.pink_pickaxe" : "PinkPickaxe"
 }
