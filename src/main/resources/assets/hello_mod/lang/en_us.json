@@ -11,5 +11,6 @@
   "item.hello_mod.pink_ingot" : "PinkIngot",
   "block.hello_mod.ferrous_iron_block" : "FerrousIronBlock",
   "block.hello_mod.mint_sand" : "MintSand",
-  "item.hello_mod.pink_pickaxe" : "PinkPickaxe"
+  "item.hello_mod.pink_pickaxe" : "PinkPickaxe",
+  "item.hello_mod.magic_mirror" : "MagicMirror"
 }

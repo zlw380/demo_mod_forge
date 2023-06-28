@@ -37,12 +37,15 @@ public class ItemRegistry {
             () -> {return new BlockItem(BlockRegistry.MINT_SAND.get(),new Item.Properties().tab(Main.HELLO_MOD_BLOCK_TAB));});
 
     public static final RegistryObject<Item> PINK_PICKAXE = ITEMS.register("pink_pickaxe",
-            () -> new PickaxeItem(Tiers.DIAMOND,1,-2.8F,(new Item.Properties()).tab(CreativeModTabs.HELLO_MOD_TOOLS)));
-    /*  斧工具构造器参数：1.挖掘等级 2.攻击伤害基数 3.攻击速度基数 4.Item对象
+            () -> new PickaxeItem(Tiers.DIAMOND,10,2.8F,(new Item.Properties()).tab(CreativeModTabs.HELLO_MOD_TOOLS)));
+    /*  斧工具构造器参数：1.挖掘等级 2.攻击伤害基数，数值越大伤害越高 3.攻击速度基数，数值越大攻速越快 4.Item对象
         public static final Item DIAMOND_PICKAXE =
             registerItem("diamond_pickaxe", new PickaxeItem(Tiers.DIAMOND, 1, -2.8F, (new Item.Properties())
             .tab(CreativeModeTab.TAB_TOOLS)));
     */
+
+    public static final RegistryObject<Item> MAGIC_MIRROR = ITEMS.register("magic_mirror",
+            () -> new MagicMirror(new Item.Properties().tab(CreativeModTabs.HELLO_MOD_TOOLS)));
 }
 
 /*
