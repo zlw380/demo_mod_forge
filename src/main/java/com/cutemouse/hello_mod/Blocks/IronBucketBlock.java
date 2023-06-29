@@ -43,7 +43,7 @@ public class IronBucketBlock extends Block {
         return this.defaultBlockState().setValue(FACING,context.getNearestLookingDirection().getOpposite());
     }
 
-/*    @Override
+    @Override
     public BlockState mirror(BlockState state, Mirror mirror) {
 
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
@@ -53,5 +53,5 @@ public class IronBucketBlock extends Block {
     public BlockState rotate(BlockState state, Rotation rotation) {
 
         return state.setValue(FACING,rotation.rotate(state.getValue(FACING)));
-    }*/
+    }
 }
