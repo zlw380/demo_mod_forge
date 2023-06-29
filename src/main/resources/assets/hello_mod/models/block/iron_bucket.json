@@ -1,0 +1,9 @@
+{
+  "parent" : "minecraft:block/cube_bottom_top",
+  "textures" :
+  {
+    "side" : "hello_mod:block/iron_bucket_side",
+    "top" : "hello_mod:block/iron_bucket_top",
+    "bottom" : "hello_mod:block/iron_bucket_bottom"
+  }
+}

@@ -46,6 +46,9 @@ public class ItemRegistry {
 
     public static final RegistryObject<Item> MAGIC_MIRROR = ITEMS.register("magic_mirror",
             () -> new MagicMirror(new Item.Properties().tab(CreativeModTabs.HELLO_MOD_TOOLS)));
+
+    public static final RegistryObject<Item> IRON_BUCKET = ITEMS.register("iron_bucket",
+            () -> new BlockItem(BlockRegistry.IRON_BUCKET.get(),new Item.Properties().tab(CreativeModTabs.HELLO_MOD_TOOLS)));
 }
 
 /*

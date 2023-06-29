@@ -2,6 +2,7 @@ package com.cutemouse.hello_mod.Blocks;
 
 import com.cutemouse.hello_mod.Main;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SandBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -22,4 +23,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> MINT_SAND = BLOCKS.register("mint_sand",
             () -> {return new SandBlock(14406560,BlockBehaviour.Properties.of(Material.SAND,MaterialColor.SAND)
             .strength(0.5F).sound(SoundType.SAND));});
+
+    public static final RegistryObject<Block> IRON_BUCKET = BLOCKS.register("iron_bucket",
+            () -> new IronBucketBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 }

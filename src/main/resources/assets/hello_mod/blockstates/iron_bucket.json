@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,open=false": {
+      "x": 180,
+      "model": "hello_mod:block/iron_bucket"
+    },
+    "facing=down,open=true": {
+      "x": 180,
+      "model": "hello_mod:block/iron_bucket_open"
+    },
+    "facing=east,open=false": {
+      "x": 90,
+      "y": 90,
+      "model": "hello_mod:block/iron_bucket"
+    },
+    "facing=east,open=true": {
+      "x": 90,
+      "y": 90,
+      "model": "hello_mod:block/iron_bucket_open"
+    },
+    "facing=north,open=false": {
+      "x": 90,
+      "model": "hello_mod:block/iron_bucket"
+    },
+    "facing=north,open=true": {
+      "x": 90,
+      "model": "hello_mod:block/iron_bucket_open"
+    },
+    "facing=south,open=false": {
+      "x": 90,
+      "y": 180,
+      "model": "hello_mod:block/iron_bucket"
+    },
+    "facing=south,open=true": {
+      "x": 90,
+      "y": 180,
+      "model": "hello_mod:block/iron_bucket_open"
+    },
+    "facing=up,open=false": {
+      "model": "hello_mod:block/iron_bucket"
+    },
+    "facing=up,open=true": {
+      "model": "hello_mod:block/iron_bucket_open"
+    },
+    "facing=west,open=false": {
+      "x": 90,
+      "y": 270,
+      "model": "hello_mod:block/iron_bucket"
+    },
+    "facing=west,open=true": {
+      "x": 90,
+      "y": 270,
+      "model": "hello_mod:block/iron_bucket_open"
+    }
+  }
+}
