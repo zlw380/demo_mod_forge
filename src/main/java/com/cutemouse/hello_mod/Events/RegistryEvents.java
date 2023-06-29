@@ -1,5 +1,6 @@
 package com.cutemouse.hello_mod.Events;
 
+import com.cutemouse.hello_mod.Blocks.AzurLaneBlock;
 import com.cutemouse.hello_mod.Items.DrinkItem;
 import com.cutemouse.hello_mod.List.BlockList;
 import com.cutemouse.hello_mod.List.FoodList;
@@ -74,7 +75,7 @@ public class RegistryEvents {
 
         event.getRegistry().registerAll(
                 BlockList.laffeyBlock =
-                        new Block(BlockBehaviour.Properties.of(Material.STONE,MaterialColor.STONE)
+                        new AzurLaneBlock(BlockBehaviour.Properties.of(Material.STONE,MaterialColor.STONE)
                         .strength(0.5F).sound(SoundType.STONE)).setRegistryName(location("laffey_block")),
                 BlockList.keqingBlock =
                         new Block(BlockBehaviour.Properties.of(Material.STONE)

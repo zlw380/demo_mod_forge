@@ -1,6 +1,31 @@
 {
   "variants":
   {
-    "" : {"model" : "hello_mod:block/laffey_block"}
+    "facing=down": {
+      "x": 180,
+      "model": "hello_mod:block/laffey_block"
+    },
+    "facing=east": {
+      "x": 90,
+      "y": 90,
+      "model": "hello_mod:block/laffey_block"
+    },
+    "facing=north": {
+      "x": 90,
+      "model": "hello_mod:block/laffey_block"
+    },
+    "facing=south": {
+      "x": 90,
+      "y": 180,
+      "model": "hello_mod:block/laffey_block"
+    },
+    "facing=up": {
+      "model": "hello_mod:block/laffey_block"
+    },
+    "facing=west": {
+      "x": 90,
+      "y": 270,
+      "model": "hello_mod:block/laffey_block"
+    }
   }
 }
