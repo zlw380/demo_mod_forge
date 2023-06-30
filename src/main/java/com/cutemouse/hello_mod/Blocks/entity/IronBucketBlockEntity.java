@@ -5,6 +5,7 @@ import com.cutemouse.hello_mod.Blocks.IronBucketBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -50,7 +51,7 @@ public class IronBucketBlockEntity extends RandomizableContainerBlockEntity {
 
                 Container container = ((ChestMenu) player.containerMenu).getContainer();
 
-                return  container == IronBucketBlockEntity.this;
+                return container == IronBucketBlockEntity.this;
             }else {
                 return false;
             }
@@ -63,26 +64,27 @@ public class IronBucketBlockEntity extends RandomizableContainerBlockEntity {
 
     @Override
     protected NonNullList<ItemStack> getItems() {
-        return null;
+        return this.items;
     }
 
     @Override
-    protected void setItems(NonNullList<ItemStack> p_59625_) {
-
+    protected void setItems(NonNullList<ItemStack> items) {
+        this.items = items;
     }
 
     @Override
     protected Component getDefaultName() {
-        return null;
+        return new TranslatableComponent("block.hello_mod.iron_bucket");
     }
 
     @Override
     protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
-        return null;
+
+        return ChestMenu.threeRows(p_58627_, p_58628_, this);
     }
 
     @Override
     public int getContainerSize() {
-        return 0;
+        return 27;
     }
 }
