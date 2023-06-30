@@ -14,9 +14,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class IronBucketBlock extends Block {
     //朝向属性
-    private static final DirectionProperty FACING = BlockStateProperties.FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
     //开闭属性
-    private static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
     public IronBucketBlock(Properties properties) {
         super(properties);

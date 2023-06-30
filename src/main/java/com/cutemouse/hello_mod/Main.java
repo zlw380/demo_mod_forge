@@ -1,5 +1,6 @@
 package com.cutemouse.hello_mod;
 
+import com.cutemouse.hello_mod.Blocks.BlockEntityRegistry;
 import com.cutemouse.hello_mod.Blocks.BlockRegistry;
 import com.cutemouse.hello_mod.Items.ItemRegistry;
 import com.cutemouse.hello_mod.List.ItemList;
@@ -78,6 +79,7 @@ public class Main {
         //（在参数中）获取Mod总线，并将ITEMS注册进Mod总线里面（挂载到Mod总线上）
         ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        BlockEntityRegistry.BLOCK_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event){
