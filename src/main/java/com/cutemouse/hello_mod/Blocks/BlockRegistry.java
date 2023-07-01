@@ -25,5 +25,5 @@ public class BlockRegistry {
             .strength(0.5F).sound(SoundType.SAND));});
 
     public static final RegistryObject<Block> IRON_BUCKET = BLOCKS.register("iron_bucket",
-            () -> new IronBucketBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+            () -> new IronBucketBlock(BlockBehaviour.Properties.of(Material.METAL).strength(0.5F).sound(SoundType.METAL)));
 }

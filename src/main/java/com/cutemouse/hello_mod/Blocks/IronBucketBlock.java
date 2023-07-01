@@ -3,17 +3,22 @@ package com.cutemouse.hello_mod.Blocks;
 import com.cutemouse.hello_mod.Blocks.entity.IronBucketBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +28,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
 
 public class IronBucketBlock extends BaseEntityBlock {
     //朝向属性
@@ -88,5 +95,51 @@ public class IronBucketBlock extends BaseEntityBlock {
             }
         }
         return InteractionResult.CONSUME;
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState p_49232_) {
+
+        return RenderShape.MODEL;
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof IronBucketBlockEntity){
+
+            ((IronBucketBlockEntity) blockEntity).recheckOpen();
+        }
+    }
+
+    @Override
+    public void onRemove(BlockState p_49076_, Level p_49077_, BlockPos p_49078_, BlockState p_49079_, boolean p_49080_) {
+        if (!p_49076_.is(p_49079_.getBlock())) {
+            BlockEntity blockentity = p_49077_.getBlockEntity(p_49078_);
+            if (blockentity instanceof Container) {
+                Containers.dropContents(p_49077_, p_49078_, (Container)blockentity);
+                p_49077_.updateNeighbourForOutputSignal(p_49078_, this);
+            }
+
+            super.onRemove(p_49076_, p_49077_, p_49078_, p_49079_, p_49080_);
+        }
+    }
+
+    public void setPlacedBy(Level p_49052_, BlockPos p_49053_, BlockState p_49054_, @javax.annotation.Nullable LivingEntity p_49055_, ItemStack p_49056_) {
+        if (p_49056_.hasCustomHoverName()) {
+            BlockEntity blockentity = p_49052_.getBlockEntity(p_49053_);
+            if (blockentity instanceof IronBucketBlockEntity) {
+                ((IronBucketBlockEntity)blockentity).setCustomName(p_49056_.getHoverName());
+            }
+        }
+    }
+
+    public boolean hasAnalogOutputSignal(BlockState p_49058_) {
+        return true;
+    }
+
+    public int getAnalogOutputSignal(BlockState p_49065_, Level p_49066_, BlockPos p_49067_) {
+        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(p_49066_.getBlockEntity(p_49067_));
     }
 }
