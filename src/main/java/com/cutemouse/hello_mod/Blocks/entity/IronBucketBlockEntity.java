@@ -78,9 +78,9 @@ public class IronBucketBlockEntity extends RandomizableContainerBlockEntity {
     }
 
     @Override
-    protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
+    protected AbstractContainerMenu createMenu(int p_58627_, Inventory inventory) {
 
-        return ChestMenu.threeRows(p_58627_, p_58628_, this);
+        return ChestMenu.threeRows(p_58627_, inventory, this);
     }
 
     @Override
